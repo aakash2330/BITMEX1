@@ -17,7 +17,7 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   if (searchParams.symbol) {
-    const { data } = await axios.post("http://localhost:3000/api/instrument", {
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/instrument`, {
       symbol: searchParams.symbol,
     });
     const updatedData = data.data.map((s: any) => {

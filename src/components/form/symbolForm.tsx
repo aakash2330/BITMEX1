@@ -28,7 +28,7 @@ export default function SymbolSearch({
   const router = useRouter();
   const [symbols, setSymbols] = useState<string[]>([]);
   useEffect(() => {
-    axios.get("http://localhost:3000/api/symbols").then(({ data }) => {
+    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/symbols`).then(({ data }) => {
       console.log({ data });
       const updatedData = data.data.map((s: any) => {
         return s.symbol;
