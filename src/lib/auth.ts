@@ -8,18 +8,17 @@ import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   pages: {
-    signIn: "/login",
+    signIn: "/",
     signOut: "/",
   },
   session: {
     strategy: "jwt",
   },
-  secret: "e3cd8aace069fd2056eab19e930a8abb",
+  secret: process.env.NEXTAUTH_SECET,
 
   providers: [
     GoogleProvider({
-      clientId:
-        process.env.CLIENT_ID ?? "",
+      clientId: process.env.CLIENT_ID ?? "",
       clientSecret: process.env.CLIENT_SECRET ?? "",
       allowDangerousEmailAccountLinking: true,
 

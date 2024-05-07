@@ -1,15 +1,8 @@
 import SymbolSearch from "@/components/form/symbolForm";
+import Graph1 from "@/components/graph/Graph1";
 import GraphPage from "@/components/graph/GraphPage";
+import { GetFormattedDate } from "@/lib/date";
 import axios from "axios";
-
-function GetFormattedDate(date: Date) {
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  const formattedDate = `${year}/${month}/${day}`;
-  return formattedDate;
-}
 
 export default async function Page({
   searchParams,
@@ -17,9 +10,12 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   if (searchParams.symbol) {
-    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/instrument`, {
-      symbol: searchParams.symbol,
-    });
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/instrument`,
+      {
+        symbol: searchParams.symbol,
+      },
+    );
     const updatedData = data.data.map((s: any) => {
       return [
         GetFormattedDate(new Date(s.timestamp)),
@@ -29,13 +25,11 @@ export default async function Page({
         s.high,
       ];
     });
+    console.log({ updatedData });
     return (
       <div key={Math.random()}>
-        <SymbolSearch
-          defaultSymbol={searchParams.symbol as string}
-        ></SymbolSearch>
-        <GraphPage data={updatedData}></GraphPage>
+        <Graph1 dataUnrefined={data.data} data={updatedData}></Graph1>
       </div>
     );
-  } else return <SymbolSearch></SymbolSearch>;
+  }
 }

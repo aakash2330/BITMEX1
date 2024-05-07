@@ -6,14 +6,5 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 export default async function Page() {
   const session = await getServerAuthSession();
-  if (session?.user) {
-    return <Landing session={session}></Landing>;
-  } else {
-    return (
-      <div className="flex justify-center items-center gap-4 ">
-        <div>Login With &nbsp;&nbsp; :</div>
-        <LoginWithGoogle></LoginWithGoogle>
-      </div>
-    );
-  }
+  return <Landing></Landing>;
 }

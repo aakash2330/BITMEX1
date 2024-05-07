@@ -25,7 +25,13 @@ function splitData(rawData: any) {
   };
 }
 
-export default function GraphPage({ data }: { data: any }) {
+export default function GraphPage({
+  data,
+  symbol,
+}: {
+  data: any;
+  symbol: string;
+}) {
   const data1 = splitData(data);
   return (
     <div>
@@ -75,7 +81,7 @@ export default function GraphPage({ data }: { data: any }) {
           ],
           series: [
             {
-              name: "日K",
+              name: symbol,
               type: "candlestick",
               data: data1.values,
               itemStyle: {

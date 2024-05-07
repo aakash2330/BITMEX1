@@ -15,28 +15,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useEffect, useState } from "react";
-import { useDebounce } from "@/lib/debounce";
-import axios from "axios";
-import { symbolsTest } from "@/lib/Data";
 import { useRouter } from "next/navigation";
-let symbolData = [""];
-export default function SymbolSearch({
-  defaultSymbol,
-}: {
-  defaultSymbol?: string;
-}) {
+export default function SymbolSearch({ symbolData }: { symbolData: string[] }) {
   const router = useRouter();
-  const [symbols, setSymbols] = useState<string[]>([]);
-  useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/symbols`).then(({ data }) => {
-      console.log({ data });
-      const updatedData = data.data.map((s: any) => {
-        return s.symbol;
-      });
-      symbolData = updatedData;
-      setSymbols(updatedData);
-    });
-  }, []);
+  const [symbols, setSymbols] = useState<string[]>(symbolData);
   const [open, setOpen] = useState(false);
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
   return (
@@ -46,9 +28,9 @@ export default function SymbolSearch({
           <Button
             variant="outline"
             size="sm"
-            className="w-[150px] justify-start"
+            className="w-[150px] text-white justify-start"
           >
-            {defaultSymbol ? <>{defaultSymbol}</> : <>+ Set Symbol</>}
+            {selectedSymbol ? <>{selectedSymbol}</> : <>+ Set Symbol</>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="p-0" side="right" align="start">
