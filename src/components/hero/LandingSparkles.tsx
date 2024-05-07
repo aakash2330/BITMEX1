@@ -12,7 +12,7 @@ export default function SparklesText({session}:{session:any}) {
       <h1 className="md:text-7xl hover:pointer text-3xl lg:text-5xl font-bold text-center text-white relative z-20">
         <Link
           onClick={() => {
-            if(session){
+            if(session==null){
             toast({
               title: "Please Login Before Continuing",
             });
