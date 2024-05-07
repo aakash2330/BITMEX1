@@ -6,5 +6,5 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 export default async function Page() {
   const session = await getServerAuthSession();
-  return <Landing></Landing>;
+  return <Landing session={session}></Landing>;
 }

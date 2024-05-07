@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { SessionProvider } from "next-auth/react";
 import SessionWrapper from "@/lib/sessionProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         >
           <SessionWrapper>{children}</SessionWrapper>
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

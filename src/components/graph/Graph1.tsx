@@ -22,6 +22,7 @@ export default function Graph1({
   data: any;
   dataUnrefined: any;
 }) {
+if(data.length,dataUnrefined.length){
   return (
     <div className="flex w-full flex-col bg-muted/40">
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -68,4 +69,8 @@ export default function Graph1({
       </div>
     </div>
   );
+  }
+  else{
+    return <div>No data found</div>
+  }
 }

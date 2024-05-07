@@ -28,7 +28,7 @@ export default function SymbolSearch({ symbolData }: { symbolData: string[] }) {
           <Button
             variant="outline"
             size="sm"
-            className="w-[150px] text-white justify-start"
+            className="w-[150px] text-white text-center justify-start"
           >
             {selectedSymbol ? <>{selectedSymbol}</> : <>+ Set Symbol</>}
           </Button>
